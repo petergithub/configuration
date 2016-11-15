@@ -1,0 +1,26 @@
+*
+
+!.bashtcl
+!.bash21
+!.setupTmux.sh
+!.bash_customize
+
+!.ssh/*
+!.script/*
+
+# track vim confituration file
+!.vimrc
+!.tmux.conf
+!.screenrc
+
+# firefox plugin
+!.vimperatorrc
+
+#gedit plugin
+!.local/share/gedit/plugins/restoretabs.plugin
+!.local/share/gedit/plugins/restoretabs.py
+
+#git files
+!.gitignore
+!README.md
+

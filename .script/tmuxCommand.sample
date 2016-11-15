@@ -1,0 +1,45 @@
+#!/bin/bash
+
+####### session 0
+# Create the session 0 with first window (0) -- ls
+Session0=Test
+Window0=win0
+tmux new-session -s $Session0 -n $Window0 -d
+tmux send-keys -t $Session0 'ls' C-m
+
+# session 0 window (1)
+Window1=git
+tmux new-window -t $Session0 -n $Window1
+tmux send-keys -t $Session0:1 'git status' C-m
+
+# session 0 window (2)
+Window2=mysql
+tmux new-window -t $Session0 -n $Window2
+tmux send-keys -t $Session0:2 'mysql -uroot -p account' C-m
+
+####### session 1
+# session 1 with window 0
+Session1=Prd
+Window0=win0
+tmux new-session -s $Session1 -n $Window0 -d
+
+# session 1 window 1
+Window1=win1
+tmux new-window -t $Session1 -n $Window1
+tmux send-keys -t $Session1:1 'git log' C-m
+
+tmux attach
+
+# split window and send keys to panel
+#tmux new-window -n server -t $SESSION_NAME
+#tmux send-keys -t $SESSION_NAME:3 'ls' C-m
+#tmux split-window -v -t $SESSION_NAME:3
+#tmux send-keys -t $SESSION_NAME:3.1 'll' C-m
+
+# check existing session
+#tmux has-session -t $SESSION_NAME
+#if [ $? != 0 ]
+#then
+#
+#fi
+#tmux attach -t $SESSION_NAME

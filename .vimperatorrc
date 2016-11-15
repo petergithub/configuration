@@ -1,0 +1,74 @@
+"vimperator 13
+
+"去掉地址栏(前进后退栏)
+"set toolbars=nonavigation,bookmarks
+set toolbars=navigation,bookmarks
+
+"highlight all the instances of the search term in the page
+set hlsearch
+"to clear nohlsearch
+
+"'autocomplete=true' = press <tab>
+set autocomplete=false
+
+set nextpattern+=s*下一页|下一张|下一篇|下页|后页s*,^下一章$,^翻下页$
+set previouspattern+=s*上一页|上一张|上一篇|上页|前页|前一页s*,^上一章$,^翻上页$
+
+"Key mapping 键映射
+"Scroll on/down half page 下上翻半页
+map J <C-d>
+map K <C-u>
+map x d
+"Open home page in new tab 在新窗口打开主页(当前窗口打开主页是gh)
+map gy gH
+
+"Disable shortcut 让某些快捷键失效
+"Add a bookmark
+map A <Nop>
+
+"j->3j的映射用map不行，要用noremap，no remap
+"noremap不会对映射之后的键再映射，只要类似的情况都不能用map，要用noremap
+noremap j 3j
+noremap k 3k
+
+"always open in new tab
+noremap f F
+noremap S gf
+noremap ] ]]
+noremap [ [[
+
+"pass a keystroke to Firefox 设置Ctrl+a,z,y
+noremap <C-a> i<C-a>
+noremap <C-z> i<C-z>
+noremap <C-y> i<C-y>
+noremap <C-f> i<C-f>
+
+"前后标签
+noremap a gT
+noremap s gt
+noremap b <C-b>
+"g0	go to the first tab
+"g$	go to the last tab
+
+"自定义打开网址
+
+noremap .1 :tabopen http://mail.163.com/<CR>
+noremap 。1 :tabopen http://mail.163.com/<CR>
+noremap .e :tabopen http://email.163.com/<CR>
+noremap 。e :tabopen http://email.163.com/<CR>
+noremap .y :tabopen http://dict.youdao.com/<CR>
+noremap 。y :tabopen http://dict.youdao.com/<CR>
+noremap .d :tabopen http://dict.youdao.com/<CR>
+noremap 。d :tabopen http://dict.youdao.com/<CR>
+
+
+noremap .b :tabopen https://www.baidu.com<CR>
+noremap 。b :tabopen https://www.baidu.com<CR>
+noremap .g :tabopen https://www.google.com<CR>
+noremap 。g :tabopen https://www.google.com<CR>
+noremap .m :tabopen https://mail.google.com<CR>
+noremap 。m :tabopen https://mail.google.com<CR>
+noremap .p :tabopen https://play.google.com/store<CR>
+noremap 。p :tabopen https://play.google.com/store<CR>
+noremap .t :tabopen http://translate.google.cn/#en/zh-CN<CR>
+noremap 。t :tabopen http://translate.google.cn/#en/zh-CN<CR>
