@@ -1,0 +1,181 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# make effective for .bash_profile
+# if [ -f ~/.bash_customize ]; then
+#     . ~/.bash_customize
+# fi
+#
+
+# update bash promote, set PS1 {
+# force_color_prompt=yes
+# if [ "$color_prompt" = yes ]; then
+#     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\W\[\033[00m\]\$ '
+# else
+#     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#     PS1='${debian_chroot:+($debian_chroot)}\W\$ '
+# fi
+# }
+
+# COMMAND MEMO {
+# kerberos: create keytab to login with it without password input every time
+# ktutil
+# addent -password -p peter@DOMAIN.COM -k 1 -e aes256-cts
+# wkt peter.keytab
+# quit
+# 
+# alias sshIP='kinit peter@DOMAIN.COM -k -t peter.keytab;ssh peter@IP'
+# ssh -t 'command; bash -l'	## will execute the command and then start up a login shell when it completes.
+# }
+
+# Customize profile
+# PATH {
+	export EDITOR=vim
+	export JAVA_HOME=~/opt/java
+	export RESIN_HOME=~/opt/resin
+	export BTRACE_HOME=~/opt/btrace-1.3.8.2
+	export MONGODB_HOME=~/opt/mongodb
+	export NGINX_HOME=~/opt/nginx
+
+	export HADOOP_HOME=~/opt/hadoop-2.7.3
+	export HADOOP_MAPRED_HOME=$HADOOP_HOME
+	export HADOOP_COMMON_HOME=$HADOOP_HOME
+	export HADOOP_HDFS_HOME=$HADOOP_HOME
+	export YARN_HOME=$HADOOP_HOME
+	export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+	export HADOOP_INSTALL=$HADOOP_HOME
+	export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+	export HBASE_HOME=~/opt/hbase-1.2.3
+	export HBASE_CONF_DIR=$HBASE_HOME/conf
+
+	export NODE_HOME=~/opt/node
+
+	export PATH=.:$NODE_HOME/bin:$JAVA_HOME/bin:$MONGODB_HOME/bin:$NGINX_HOME/sbin:$BTRACE_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$PATH
+
+	export CLASSPATH=.:$JAVA_HOME/lib:$CLASSPATH
+	#export LD_LIBRARY_PATH=/usr/lib/i386-linux-gnu
+	export LIB_ODBC_DRIVER_MANAGER=/usr/lib/libodbc.so
+	export CHEATCOLORS=true
+# }
+
+# bash {
+	# Custom Editor {
+		alias temp='vi /data/tmp/temp.txt'
+		alias json.html='vi /data/tmp/json.html'
+		alias todo.txt='vi ~/Dropbox/share/todo.txt'
+		alias MySQLNotes='vi ~/Dropbox/base/notes/01Technology/MySQL/MySQLNotes.md'
+		alias ubuntuNotes='vi ~/Dropbox/base/notes/01Technology/ubuntuNotes.md'
+		alias ubuntuInstallGuide='vi ~/Dropbox/base/notes/01Technology/ubuntuInstallGuide.sh'
+		alias common='vi ~/Dropbox/common.txt'
+		alias dockerNotest='vi ~/Dropbox/dockerNotes.txt'
+		alias foxit='wine ~/sp/exe/reader/Foxit\ Phantom\ 2.2.3.1112_WaiTsun.com/Foxit\ Phantom.exe'
+	# }
+	# System {
+		stty -ixon	# totally disable XON/XOFF (resume/pause) flow control characters for C-s to forward-search-history @see man readline
+		alias ..='cd ..'
+		alias ...='cd ../..'
+		alias less='less --tabs=4' #调用`\less`使用原本的ls命令而不是别名
+		alias del='trash-put'
+   		alias ls='ls --color=auto'
+		alias ll='ls -alF'
+		alias la='ls -A'
+		alias l='ls -CF'
+		alias lsfile='find . -maxdepth 1 -type f -printf "%f\n"'
+		alias lsdir='find . -maxdepth 1 -type d -printf "%f\n"' # or ls -d */
+		alias grep='grep --color=auto'
+	    alias fgrep='fgrep --color=auto'
+   		alias egrep='egrep --color=auto'
+		alias psg="ps -ef | grep"
+		alias pgrep='pgrep -l'
+		alias hostedit='sudo vi /etc/hosts'
+		alias dnsedit='sudo vi /etc/resolvconf/resolv.conf.d/head'
+		alias dnsresolvconf='sudo resolvconf -u'
+		alias dnsclean='sudo /etc/init.d/dns-clean start'
+		psk() { kill $(ps -aef | grep $1 | grep -v grep | awk '{print $2}');}
+		alias unzipo='unzip -O cp936' # unzip -O cp936 fix linux下文件解压乱码
+		alias dec2hex="printf '%x\n' $1" # or with `echo "obase=16; 255" | bc`
+		alias hex2dec="dex=$(($1)); echo $dex" # or with `echo "ibase=16; FF" | bc`, must with uppercase hex
+		alias terminal='gnome-terminal'
+		alias updatehosts='~/work/ubuntuGitWorkspace/peter/hosts/tools/lhosts; cp /etc/hosts ~/Dropbox/pcSetting/network/hosts.bak'
+		mcd() { mkdir -p "$1"; cd "$1";}
+		backup() { cp "$1"{,.bak};}
+		cls() { cd "$1"; ls;}
+		md5() { echo -n $1 | md5sum;}
+		md5check() { md5sum "$1" | grep "$2";}	#md5check file md5Value
+		extract() {
+    		if [ -f $1 ] ; then
+		      case $1 in
+    		    *.tar.bz2)   tar xjf $1     ;;
+    		    *.tar.gz)    tar xzf $1     ;;
+    		    *.bz2)       bunzip2 $1     ;;
+    		    *.rar)       unrar e $1     ;;
+    		    *.gz)        gunzip $1      ;;
+    		    *.tar)       tar xf $1      ;;
+    		    *.tbz2)      tar xjf $1     ;;
+    		    *.tgz)       tar xzf $1     ;;
+    		    *.zip)       unzip $1       ;;
+    		    *.Z)         uncompress $1  ;;
+    		    *.7z)        7z x $1        ;;
+    		    *)     echo "'$1' cannot be extracted via extract()" ;;
+    		     esac
+    		else
+    		     echo "'$1' is not a valid file"
+    		fi
+		}
+	# }
+	# Network {
+		proxyNone() { gsettings set org.gnome.system.proxy mode 'none'; }
+		proxyAuto() {
+			gsettings set org.gnome.system.proxy mode 'auto';
+			gsettings set org.gnome.system.proxy autoconfig-url http://127.0.0.1:16823/proxy_on.pac
+		}
+		proxySocks() {
+			gsettings set org.gnome.system.proxy mode 'manual';
+			gsettings set org.gnome.system.proxy.socks host 'localhost';
+			gsettings set org.gnome.system.proxy.socks port 7070;
+		}
+		alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla" #download the whole website
+		alias listen="lsof -P -i -n"	#display which app connected to website
+		alias port='netstat -tulanp'	#display active port
+		alias ipinfo="curl ifconfig.me && curl ifconfig.me/host"	# get your public IP adress and hostname
+		getlocation() { lynx -dump http://www.ip-adress.com/ip_tracer/?QRY=$1|grep address|egrep 'city|state|country'|awk '{print $3,$4,$5,$6,$7,$8}'|sed 's\ip address flag \\'|sed 's\My\\';}	#get your location from website
+	# }
+# }
+
+# apt file {
+	alias agi='sudo apt-get install'
+	alias agr='sudo apt-get remove'
+	alias agu='sudo apt-get update'
+	alias acs='apt-cache search'
+# }
+
+# git alias {
+	alias ga='git add'
+	alias gcp='git cherry-pick'
+	alias gs='git status'
+	alias gd='git diff'
+	alias gm='git commit'
+	alias gc='git checkout '
+	alias gp='git push'
+	alias gpl='git pull --rebase'
+	alias gl='git log --oneline -10 --graph'
+	alias gb='git branch -a'
+	alias gf='git fetch'
+	alias gcl='git config -l'
+	alias glo='git clone'
+	#alias gls='git ls-tree --full-tree -r --name-only HEAD' # list all traced files
+	alias gls='git ls-files'
+# }
+
+# Colored man pages {
+	# make man page display with color
+	export LESS_TERMCAP_mb=$'\E[01;31m'
+	export LESS_TERMCAP_md=$'\E[01;31m'
+	export LESS_TERMCAP_me=$'\E[0m'
+	export LESS_TERMCAP_se=$'\E[0m'
+	export LESS_TERMCAP_so=$'\E[01;44;33m'
+	export LESS_TERMCAP_ue=$'\E[0m'
+	export LESS_TERMCAP_us=$'\E[01;32m'
+# }
