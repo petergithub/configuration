@@ -5,6 +5,16 @@
 " refer to http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_%28Part_1%29
 " https://github.com/spf13/spf13-vim/blob/3.0/.vimrc
 " https://github.com/wklken/k-vim/blob/master/vimrc
+
+" get customized vim configuration file .vimrc
+" wget --no-check-certificate -O ~/.vimrc https://raw.githubusercontent.com/petergithub/configuration/master/.vimrc
+
+" To turn off autoindent when you paste code, there's a special paste mode.
+" `:set paste` or `set noautoindent`. After you pasted your code, turn off the paste-mode `:set nopaste`
+
+" Making xml file with pretty format
+" :%!xmllint --format %
+
 " Command mode, Insert mode and Normal mode
 
 " save file with sudo :W
@@ -25,6 +35,8 @@ command W w !sudo tee % > /dev/null
 	nnoremap <leader>q :q<CR>	
 	" Quickly save the current file
 	nnoremap <leader>w :w<CR>	
+	" Quickly start a shell 
+	nnoremap <leader>s :sh<CR>	
 	" 命令行模式增强，ctrl - a到行首， -e 到行尾
 	cnoremap <C-j> <t_kd>
 	cnoremap <C-k> <t_ku>
