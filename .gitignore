@@ -1,12 +1,13 @@
 *
 
-!.bashtcl
-!.bash21
+!.bashwork
 !.setupTmux.sh
-!.bash_customize
+!.bashp
+!.script
 
 !.ssh/*
 !.script/*
+
 
 # track vim confituration file
 !.vimrc
