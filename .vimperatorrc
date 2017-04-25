@@ -1,5 +1,9 @@
 "vimperator 13
 
+"### Use Shift+Esc to temporarily disable Vimperator. Press it once again to make it work
+"### :source ~/.vimperatorrc	reload .vimperatorrc
+"### :st[op]	Stop loading the current web page. <C-c> doesn't work on Ubuntu (why?)
+
 "去掉地址栏(前进后退栏)
 "set toolbars=nonavigation,bookmarks
 set toolbars=navigation,bookmarks
@@ -15,6 +19,16 @@ set nextpattern+=s*下一页|下一张|下一篇|下页|后页s*,^下一章$,^�
 set previouspattern+=s*上一页|上一张|上一篇|上页|前页|前一页s*,^上一章$,^翻上页$
 
 "Key mapping 键映射
+" Press 'F10' to toggle Vimperator
+noremap <F10> :vimperatortoggle<CR>
+
+" toggle Find bar
+noremap <c-s-f> :js getBrowser().getFindBar().close();<cr>
+inoremap <c-s-f> <esc>:js getBrowser().getFindBar().close();<cr>
+
+" Stop loading the current page
+map <C-d> :stop<Return>
+
 "Scroll on/down half page 下上翻半页
 map J <C-d>
 map K <C-u>
@@ -30,6 +44,8 @@ map A <Nop>
 "noremap不会对映射之后的键再映射，只要类似的情况都不能用map，要用noremap
 noremap j 3j
 noremap k 3k
+noremap l 5l
+noremap h 5h
 
 "always open in new tab
 noremap f F
@@ -44,6 +60,10 @@ noremap <C-y> i<C-y>
 noremap <C-f> i<C-f>
 
 "前后标签
+" Press 'a' to go to previous tab
+" Press 's' to go to next tab
+"noremap a :tabprevious<CR>
+"noremap s :tabnext<CR>
 noremap a gT
 noremap s gt
 noremap b <C-b>
