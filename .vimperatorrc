@@ -1,4 +1,4 @@
-"vimperator 13
+"vimperator
 
 "### Use Shift+Esc to temporarily disable Vimperator. Press it once again to make it work
 "### :source ~/.vimperatorrc	reload .vimperatorrc
@@ -19,6 +19,8 @@ set nextpattern+=s*下一页|下一张|下一篇|下页|后页s*,^下一章$,^�
 set previouspattern+=s*上一页|上一张|上一篇|上页|前页|前一页s*,^上一章$,^翻上页$
 
 "Key mapping 键映射
+"let mapleader = "<Space>"
+let mapleader = ","
 " Press 'F10' to toggle Vimperator
 noremap <F10> :vimperatortoggle<CR>
 
@@ -84,11 +86,21 @@ noremap 。d :tabopen http://dict.youdao.com/<CR>
 
 noremap .b :tabopen https://www.baidu.com<CR>
 noremap 。b :tabopen https://www.baidu.com<CR>
-noremap .g :tabopen https://www.google.com<CR>
-noremap 。g :tabopen https://www.google.com<CR>
+noremap .g :tabopen https://www.google.com/ncr<CR>
+noremap 。g :tabopen https://www.google.com/ncr<CR>
 noremap .m :tabopen https://mail.google.com<CR>
 noremap 。m :tabopen https://mail.google.com<CR>
 noremap .p :tabopen https://play.google.com/store<CR>
 noremap 。p :tabopen https://play.google.com/store<CR>
 noremap .t :tabopen http://translate.google.cn/#en/zh-CN<CR>
 noremap 。t :tabopen http://translate.google.cn/#en/zh-CN<CR>
+
+" disable on website: js modes.passAllKeys = false
+" disable on gmail,shimo; enable on gtask
+autocmd LocationChange .*                             js modes.passAllKeys = false
+autocmd LocationChange mail\\.google\\.com            js modes.passAllKeys = true
+autocmd LocationChange shimo\\.im				      js modes.passAllKeys = true
+"autocmd LocationChange www\\.teambition\\.com      js modes.passAllKeys = true
+
+" try ignorekeys
+"ignorekeys add mail.google.com

@@ -46,6 +46,8 @@ command W w !sudo tee % > /dev/null
 
 " General settings {
 	set tabstop=4
+	"set autoindent "uses the indent from the previous line. :set ai/noai
+
 	"set number		" display line number; hide line number :set nonum
 	"set wrap  "wrap a line; set nowrap 取消换行
 	"set relativenumber	" or :set rnu
@@ -75,7 +77,26 @@ command W w !sudo tee % > /dev/null
 	set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " }
 
-	" window: Smart way to move between windows 分屏窗口移动 {
+" Python settings {
+	" refer to http://vim.wikia.com/wiki/Converting_tabs_to_spaces
+	" http://vim.wikia.com/wiki/Keep_your_vimrc_file_clean
+
+	"set expandtab "将Tab展开成空格 Use the appropriate number of spaces to insert a <Tab>
+	"set softtabstop=4 " makes the spaces feel like real tabs, This makes the backspace key treat the four spaces like a tab (so one backspace goes back a full 4 spaces). 
+	"set shiftwidth=4 "这个量是每行的缩进深度，一般设置成和tabstop一样的宽度"
+	"set smarttab "a <Tab> in front of a line inserts blanks according to shiftwidth
+	"set smartindent "Do smart autoindenting when starting a new line
+
+	autocmd FileType python set expandtab | set smartindent 
+	autocmd FileType python set softtabstop=4 | set shiftwidth=4 | set smarttab
+" }
+
+" C, C++ settings {
+	autocmd FileType c,cpp set expandtab | set shiftwidth=4 | set cindent 
+	"set cindent "C语言风格缩进"
+" }
+
+" Window: Smart way to move between windows 分屏窗口移动 {
 	map wj <C-W>j
 	map wk <C-W>k
 	map wh <C-W>h

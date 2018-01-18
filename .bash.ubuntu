@@ -1,0 +1,46 @@
+
+# update bash promote, set PS1 {
+# force_color_prompt=yes
+# if [ "$color_prompt" = yes ]; then
+#     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\W\[\033[00m\]\$ '
+# else
+#     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#     PS1='${debian_chroot:+($debian_chroot)}\W\$ '
+# fi
+# }
+
+# Customize profile
+# PATH {
+	export EDITOR=vim
+	export JAVA_HOME=~/opt/java
+	export SCALA_HOME=~/opt/scala
+	export RESIN_HOME=~/opt/resin
+	export BTRACE_HOME=~/opt/btrace-1.3.8.2
+	export MONGODB_HOME=~/opt/mongodb
+	export NGINX_HOME=~/opt/nginx
+
+	export HADOOP_HOME=~/opt/hadoop-2.7.3
+	export HADOOP_MAPRED_HOME=$HADOOP_HOME
+	export HADOOP_COMMON_HOME=$HADOOP_HOME
+	export HADOOP_HDFS_HOME=$HADOOP_HOME
+	export YARN_HOME=$HADOOP_HOME
+	export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+	export HADOOP_INSTALL=$HADOOP_HOME
+	export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+	export SPARK_HOME=~/opt/spark
+
+	export HBASE_HOME=~/opt/hbase-1.2.3
+	export HBASE_CONF_DIR=$HBASE_HOME/conf
+
+	export NODE_HOME=~/opt/node
+	export ORC_TOOLS=~/opt/orc-tools
+
+	export PATH=.:$PATH:~/work/bin:$ORC_TOOLS:$NODE_HOME/bin:$JAVA_HOME/bin:$MONGODB_HOME/bin:$NGINX_HOME/sbin:$BTRACE_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/bin:~/opt/OracleDeveloperStudio12.6-linux-x86-bin/developerstudio12.6/bin
+
+	export CLASSPATH=.:$JAVA_HOME/lib:$CLASSPATH
+	#export LD_LIBRARY_PATH=/usr/lib/i386-linux-gnu
+	export LIB_ODBC_DRIVER_MANAGER=/usr/lib/libodbc.so
+	export CHEATCOLORS=true
+# }
