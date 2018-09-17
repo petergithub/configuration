@@ -11,6 +11,8 @@
 
 " To turn off autoindent when you paste code, there's a special paste mode.
 " `:set paste` or `set noautoindent`. After you pasted your code, turn off the paste-mode `:set nopaste`
+" `:set list` to enable display invisible characters, `:set nolist` to disable
+" `:syntax on` highlighting 
 
 " Making xml file with pretty format
 " :%!xmllint --format %
@@ -45,12 +47,16 @@ command W w !sudo tee % > /dev/null
 " }
 
 " General settings {
+	set mouse=a	" mouse support
+	set cursorline 	"Highlight the screen line of the cursor with CursorLine
 	set tabstop=4
 	"set autoindent "uses the indent from the previous line. :set ai/noai
+	filetype indent on	"开启文件类型检查，并且载入与该类型对应的缩进规则。比如，如果编辑的是.py文件，Vim 就是会找 Python 的缩进规则~/.vim/indent/python.vim
 
 	"set number		" display line number; hide line number :set nonum
 	"set wrap  "wrap a line; set nowrap 取消换行
 	"set relativenumber	" or :set rnu
+	set showcmd	"Show (partial) command in the last line of the screen
 	"au FocusLost * :set norelativenumber number
 	"au FocusGained * :set relativenumber
 	"" 插入模式下用绝对行号, 普通模式下用相对
@@ -66,10 +72,15 @@ command W w !sudo tee % > /dev/null
 	" set ignorecase
 	set smartcase	" ignore case if search pattern is all lowercase, case-sensitive otherwise
 	set autoread " 文件修改之后自动载入
-	set t_ti= t_te=	"设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制. 好处：误删什么的，如果以前屏幕打开，可以找回
+	"set t_ti= t_te=	"设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制. 好处：误删什么的，如果以前屏幕打开，可以找回
 
-	set backupdir=/data/tmp,.	" set backup file and folder
-	set directory=/data/tmp,.
+	set nobackup
+	set noswapfile
+	set undofile
+	"结尾的//表示生成的文件名带有绝对路径，路径中用%替换目录分隔符，这样可以防止文件重名
+	set backupdir=~/.vim/.backup//  " set backup file and folder
+	set directory=~/.vim/.swp//
+	set undodir=~/.vim/.undo// 
 	
 	set termencoding=utf-8	" set encoding
 	set encoding=utf-8
