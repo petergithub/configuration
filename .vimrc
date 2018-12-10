@@ -8,6 +8,7 @@
 
 " get customized vim configuration file .vimrc
 " wget --no-check-certificate -O ~/.vimrc https://raw.githubusercontent.com/petergithub/configuration/master/.vimrc
+" mkdir -p ~/.vim/{.backup,.undo,.swp}
 
 " To turn off autoindent when you paste code, there's a special paste mode.
 " `:set paste` or `set noautoindent`. After you pasted your code, turn off the paste-mode `:set nopaste`
@@ -47,11 +48,12 @@ command W w !sudo tee % > /dev/null
 " }
 
 " General settings {
-	set mouse=a	" mouse support
+	"set mouse=a	" mouse support
 	set cursorline 	"Highlight the screen line of the cursor with CursorLine
 	set tabstop=4
 	"set autoindent "uses the indent from the previous line. :set ai/noai
 	filetype indent on	"开启文件类型检查，并且载入与该类型对应的缩进规则。比如，如果编辑的是.py文件，Vim 就是会找 Python 的缩进规则~/.vim/indent/python.vim
+	"set visualbell
 
 	"set number		" display line number; hide line number :set nonum
 	"set wrap  "wrap a line; set nowrap 取消换行
