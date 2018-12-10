@@ -15,7 +15,7 @@
 # addent -password -p peter@DOMAIN.COM -k 1 -e aes256-cts
 # wkt peter.keytab
 # quit
-# 
+#
 # alias sshIP='kinit peter@DOMAIN.COM -k -t peter.keytab;ssh peter@IP'
 # ssh -t 'command; bash -l'	## will execute the command and then start up a login shell when it completes.
 # }
@@ -47,7 +47,7 @@
 	export NODE_HOME=~/opt/node
 	export ORC_TOOLS=~/opt/orc-tools
 
-	export PATH=.:$PATH:~/work/bin:$ORC_TOOLS:$NODE_HOME/bin:$JAVA_HOME/bin:$MONGODB_HOME/bin:$NGINX_HOME/sbin:$BTRACE_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/bin:~/opt/OracleDeveloperStudio12.6-linux-x86-bin/developerstudio12.6/bin
+	export PATH=.:$PATH:~/work/bin:~/.script:$ORC_TOOLS:$NODE_HOME/bin:$JAVA_HOME/bin:$MONGODB_HOME/bin:$NGINX_HOME/sbin:$BTRACE_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/bin:~/opt/OracleDeveloperStudio12.6-linux-x86-bin/developerstudio12.6/bin
 
 	export CLASSPATH=.:$JAVA_HOME/lib:$CLASSPATH
 	#export LD_LIBRARY_PATH=/usr/lib/i386-linux-gnu
@@ -57,6 +57,7 @@
 
 # bash {
 	alias fixsougou='rm -r ~/.config/SogouPY && echo RESTART SYSTEM'
+	alias shadowsocks='sh ~/work/bin/shadowsocks'
 	# Custom Editor {
 		alias temp='vi /data/tmp/temp.txt'
 		alias json.html='vi /data/tmp/json.html'
@@ -96,6 +97,8 @@
 		alias dnsclean='sudo /etc/init.d/dns-clean start'
 		alias updatehosts='~/work/ubuntuGitWorkspace/peter/hosts/tools/lhosts; cp /etc/hosts ~/.bak/hosts.bak; sed -i 's/127.0.1.1\tpuX260//g' ~/.bak/hosts.bak; cp ~/.bak/hosts.bak ~/Dropbox/pcSetting/network/hosts.bak'
 
+	# }
+	# Tool {
 		psk() { kill $(ps -aef | grep $1 | grep -v grep | awk '{print $2}');}
 		alias unzipo='unzip -O cp936' # unzip -O cp936 fix linux下文件解压乱码
 		alias dec2hex="printf '%x\n' $1" # or with `echo "obase=16; 255" | bc`
@@ -103,7 +106,11 @@
 		alias terminal='gnome-terminal'
 		alias historyRank='history|awk "{print \$2}"|awk "BEGIN {FS=\"|\"} {print \$1}"|sort|uniq -c|sort -r|less'
 		alias dutop='du -s * | sort -nr | head | awk "{print \$2}" | xargs du -sh'
+		alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+		alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 
+		#macConvert { sed "s/:/ /g" $1 | tr [A-Z] [a-z] }
+		#macConvert { echo $1 | sed "s/:/ /g" | sed "s/.*/\L&/" }
 		mcd() { mkdir -p "$1"; cd "$1";}
 		backup() { cp "$1"{,.bak};}
 		cls() { cd "$1"; ls;}
@@ -149,7 +156,7 @@
 		getlocation() { lynx -dump http://www.ip-adress.com/ip_tracer/?QRY=$1|grep address|egrep 'city|state|country'|awk '{print $3,$4,$5,$6,$7,$8}'|sed 's\ip address flag \\'|sed 's\My\\';}	#get your location from website
 
 		# port fowarding dynamicly with jhost on port 7070, -g allows remote hosts to connect to local forwarded ports
-		portFowardDynamic() { 
+		portFowardDynamic() {
 			kill $(ps -ef | grep 'ssh -fNT -D 7070' | grep -v grep | awk '{print $2}') 2> /dev/null;
 			ssh -fNT -D 7070 $1;
 		}

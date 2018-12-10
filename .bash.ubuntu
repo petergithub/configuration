@@ -10,37 +10,78 @@
 # fi
 # }
 
-# Customize profile
-# PATH {
-	export EDITOR=vim
-	export JAVA_HOME=~/opt/java
-	export SCALA_HOME=~/opt/scala
-	export RESIN_HOME=~/opt/resin
-	export BTRACE_HOME=~/opt/btrace-1.3.8.2
-	export MONGODB_HOME=~/opt/mongodb
-	export NGINX_HOME=~/opt/nginx
+	alias fixsougou='rm -r ~/.config/SogouPY && echo RESTART SYSTEM'
+	alias terminal='gnome-terminal'
 
-	export HADOOP_HOME=~/opt/hadoop-2.7.3
-	export HADOOP_MAPRED_HOME=$HADOOP_HOME
-	export HADOOP_COMMON_HOME=$HADOOP_HOME
-	export HADOOP_HDFS_HOME=$HADOOP_HOME
-	export YARN_HOME=$HADOOP_HOME
-	export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-	export HADOOP_INSTALL=$HADOOP_HOME
-	export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+    # Custom Editor {
+		alias foxit='wine ~/sp/exe/reader/Foxit\ Phantom\ 2.2.3.1112_WaiTsun.com/Foxit\ Phantom.exe'
 
-	export SPARK_HOME=~/opt/spark
+        alias hostedit='sudo vi /etc/hosts'
+        alias dnsedit='sudo vi /etc/resolvconf/resolv.conf.d/head'
+	# }
 
-	export HBASE_HOME=~/opt/hbase-1.2.3
-	export HBASE_CONF_DIR=$HBASE_HOME/conf
+    # System {
+		alias del='trash-put'
+        alias ls='ls --color=auto'
+		alias ll='ls -alF'
+        alias la='ls -A'
+        alias l='ls -CF'
+        alias lsfile='find . -maxdepth 1 -type f -printf "%f\n"'
+        alias lsdir='find . -maxdepth 1 -type d -printf "%f\n"' # or ls -d */
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
 
-	export NODE_HOME=~/opt/node
-	export ORC_TOOLS=~/opt/orc-tools
+        alias dnsclean='sudo /etc/init.d/dns-clean start'
+        alias updatehosts='~/workspace/code.me/hosts/tools/lhosts; cp /etc/hosts ~/.bak/hosts.bak; sed -i 's/127.0.1.1\tpuX260//g' ~/.bak/hosts.bak; cp ~/.bak/hosts.bak ~/Dropbox/pcSetting/network/hosts.bak'
 
-	export PATH=.:$PATH:~/work/bin:$ORC_TOOLS:$NODE_HOME/bin:$JAVA_HOME/bin:$MONGODB_HOME/bin:$NGINX_HOME/sbin:$BTRACE_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/bin:~/opt/OracleDeveloperStudio12.6-linux-x86-bin/developerstudio12.6/bin
+	# }
 
-	export CLASSPATH=.:$JAVA_HOME/lib:$CLASSPATH
-	#export LD_LIBRARY_PATH=/usr/lib/i386-linux-gnu
-	export LIB_ODBC_DRIVER_MANAGER=/usr/lib/libodbc.so
-	export CHEATCOLORS=true
+	# Tool {
+		md5() { echo -n $1 | md5sum;}
+		md5check() { md5sum "$1" | grep "$2";}  #md5check file md5Value
+	# }
+
+# apt file {
+    alias agi='sudo apt-get install'
+    alias agr='sudo apt-get remove'
+    alias agu='sudo apt-get update'
+    alias acs='apt-cache search'
 # }
+
+# git alias {
+    alias ga='git add'
+    alias gcp='git cherry-pick'
+    alias gs='git status'
+    alias gd='git diff'
+    alias gm='git commit'
+    alias gma='git commit --amend --no-edit'
+    alias ge='git merge'
+    alias genf='git merge --no-ff'
+    alias gc='git checkout'
+    alias gp='git push'
+    alias gplease='git push --force-with-lease'
+    alias gpl='git pull --rebase'
+    alias gl='git log --oneline -10 --graph'
+    alias gb='git branch -avv'
+    alias gf='git fetch'
+    alias gcl='git config -l'
+    alias glo='git clone'
+    #alias gls='git ls-tree --full-tree -r --name-only HEAD' # list all traced files
+    alias gls='git ls-files'
+    alias gtag='git tag -n9'
+# }
+
+    # Network {
+        alias sshi='ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no'
+        #proxyNone() { gsettings set org.gnome.system.proxy mode 'none'; }
+        #proxyAuto() {
+            #gsettings set org.gnome.system.proxy mode 'auto';
+            #gsettings set org.gnome.system.proxy autoconfig-url http://127.0.0.1:16823/proxy_on.pac
+        #}
+        #proxySocks() {
+            #gsettings set org.gnome.system.proxy mode 'manual';
+            #gsettings set org.gnome.system.proxy.socks host 'localhost';
+            #gsettings set org.gnome.system.proxy.socks port 7070;
+        #}
+	# }
