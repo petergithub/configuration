@@ -98,8 +98,8 @@ noremap 。t :tabopen http://translate.google.cn/#en/zh-CN<CR>
 " disable on website: js modes.passAllKeys = false
 " disable on gmail,shimo; enable on gtask
 autocmd LocationChange .*                             js modes.passAllKeys = false
-autocmd LocationChange mail\\.google\\.com            js modes.passAllKeys = true
 autocmd LocationChange shimo\\.im				      js modes.passAllKeys = true
+"autocmd LocationChange mail\\.google\\.com            js modes.passAllKeys = true
 "autocmd LocationChange www\\.teambition\\.com      js modes.passAllKeys = true
 
 " try ignorekeys
